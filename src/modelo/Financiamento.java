@@ -1,6 +1,6 @@
 package modelo;
 
-public class Financiamento{
+public abstract class Financiamento{
     //atributos
     protected double valorImovel;
     protected int prazoFinanciamento;
@@ -26,17 +26,15 @@ public class Financiamento{
     }
 
     // metodos
-    public double calcularPagamentoMensal(){
-        return (this.valorImovel / (this.prazoFinanciamento * 12)) * (1 + ((this.taxaJurosAnual/100) / 12)); //segui exemplo da semana 5
-    }
-    public double calcularTotalPagamento(){
-        return calcularPagamentoMensal() * this.prazoFinanciamento * 12;
-    }
+    public abstract double calcularPagamentoMensal();
+
+    public abstract double calcularTotalPagamento();
 
     public void imprimirValores(){
         double pagMensal = calcularPagamentoMensal();
         double totalPag = calcularTotalPagamento();
         System.out.printf("valor do pagamento Mensal: %.2f, valor do pagamento Total: %.2f\n", pagMensal, totalPag);
     }
+    public abstract void imprimirDadosFinanciamento();
 
 }

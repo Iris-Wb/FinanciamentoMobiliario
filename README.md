@@ -1,7 +1,5 @@
 # Projeto de Financiamento Mobiliário
-Projeto desenvolvido no curso de ADS na disciplina de POO
-
-Versão atualizada a cada semana.
+Projeto de simulação de financiamento mobiliário desenvolvido no curso de ADS na disciplina de POO
 
 ## Divisões do Projeto
 O projeto foi dividido em diversas classes localizadas nos pacotes main, modelo e util. 
@@ -17,4 +15,7 @@ Foi aplicado conceitos aprendidos com:
 Iris Warmeling dos Santos
 
 ## Versão 
-22/06/2025 - Semana 6 de estudo.
+Versões atualizadas semanalmente.
+
+22/06/2025 - Semana 6 de estudo, classes e métodos abstratos.
+23/06/2025 - Implementação de novos atributos em casa, apartamento e terreno.
