@@ -18,4 +18,7 @@ Iris Warmeling dos Santos
 Versões atualizadas semanalmente.
 
 22/06/2025 - Semana 6 de estudo, classes e métodos abstratos.
+
 23/06/2025 - Implementação de novos atributos em casa, apartamento e terreno.
+
+24/06/2025 - Adição de tratamento de erros com try e catch.
