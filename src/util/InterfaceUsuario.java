@@ -42,7 +42,7 @@ public class InterfaceUsuario{
         return prazo;
     }
     public double solicitarTaxaJuros(){
-        double taxa = 2;
+        double taxa = 1;
         while (taxa < 2.00 || taxa > 15.00) {
             try {
                 System.out.print("Digite o valor da taxa de juros: ");
@@ -53,6 +53,7 @@ public class InterfaceUsuario{
                 }
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida, digite um número.");
+                scanner.nextLine();
             }
         }
         return taxa;

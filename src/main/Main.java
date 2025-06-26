@@ -45,30 +45,34 @@ public class Main {
         //listaDeFinanciamento.add(new Terreno(valorImovelTerreno, prazoFinanciamentoAnosTerreno, taxaJurosTerreno, zona));
 
         // Demais vezes já passando os valores de parâmetros
-        listaDeFinanciamento.add(new Casa(150000, 8, 10, 20, 50));
+        listaDeFinanciamento.add(new Casa(960000, 1, 12, 20, 50));
         listaDeFinanciamento.add(new Apartamento(205000, 10, 10, 2, 10));
         listaDeFinanciamento.add(new Apartamento(500000, 10, 10, 0, 12));
         listaDeFinanciamento.add(new Terreno(500000, 10, 10, "Residencial"));
 
+        System.out.println();
         double totalImoveis = 0;
         double totalFinanciamento = 0;
 
         for (int i = 0; i < listaDeFinanciamento.size(); i++){
+            System.out.printf("Financiamento " + (i + 1) + ": \n");
             Financiamento financiamento = listaDeFinanciamento.get(i);
-            System.out.printf("Financiamento " + (i + 1) + ": ");
-            System.out.printf("valor do imóvel: %.2f, valor do financiamento: %.2f\n", financiamento.getValorImovel(), financiamento.calcularTotalPagamento());
+            double totalPagamento = financiamento.calcularPagamentoMensal() * 12 * financiamento.getPrazoFinanciamento();
+            // para evitar chamar o metodo que calcula o pagamento total, pois chamaria o catch duas vezes.
+            System.out.printf("Valor do imóvel: %.2f, valor do financiamento: %.2f\n\n", financiamento.getValorImovel(), totalPagamento);
             totalImoveis += financiamento.getValorImovel();
-            totalFinanciamento += financiamento.calcularTotalPagamento();
+            totalFinanciamento += totalPagamento;
         }
-        System.out.printf("\nTotal de todos os imóveis: %.2f, total de todos os financiamentos: %.2f\n\n", totalImoveis, totalFinanciamento);
+        System.out.println("___________________________________________________________________________________");
+        System.out.printf("Total de todos os imóveis: %.2f, total de todos os financiamentos: %.2f\n", totalImoveis, totalFinanciamento);
+        System.out.println("-----------------------------------------------------------------------------------\n");
 
 
         for (int i = 0; i < listaDeFinanciamento.size(); i++){
-            System.out.printf("Financiamento " + (i + 1) + ": ");
+            System.out.printf("Financiamento " + (i + 1) + ": \n");
             listaDeFinanciamento.get(i).imprimirValores();
         }
 
-        System.out.printf("\n");
         for (Financiamento financiamento : listaDeFinanciamento){
             financiamento.imprimirDadosFinanciamento();
             System.out.println("\n");

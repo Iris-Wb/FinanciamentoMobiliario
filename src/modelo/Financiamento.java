@@ -32,8 +32,8 @@ public abstract class Financiamento{
 
     public void imprimirValores(){
         double pagMensal = calcularPagamentoMensal();
-        double totalPag = calcularTotalPagamento();
-        System.out.printf("valor do pagamento Mensal: %.2f, valor do pagamento Total: %.2f\n", pagMensal, totalPag);
+        double totalPag = pagMensal * 12 * this.prazoFinanciamento;
+        System.out.printf("Pagamento Mensal: %.2f, pagamento Total: %.2f\n\n", pagMensal, totalPag);
     }
     public abstract void imprimirDadosFinanciamento();
 

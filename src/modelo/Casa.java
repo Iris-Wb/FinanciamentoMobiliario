@@ -13,7 +13,8 @@ public class Casa extends Financiamento{
 
     private void validarValorJuros(double valorJuros, double valorAcrescimo) throws AumentoMaiorDoQueJurosException {
         if (valorAcrescimo > valorJuros/2) {
-            throw new AumentoMaiorDoQueJurosException("O acréscimo não pode ser maior do que o valor da metade do juros da mensalidade!");
+            throw new AumentoMaiorDoQueJurosException("\n--------\nO valor do acréscimo foi definido para metade do valor do juros!\n" +
+                    "Pois o mesmo não pode ser maior do que o valor da metade do juros da mensalidade!\n--------");
         }
     }
 
@@ -26,12 +27,13 @@ public class Casa extends Financiamento{
         try {
             validarValorJuros(valorJuros, valorAcrescimo);
         } catch (AumentoMaiorDoQueJurosException e){
-            //System.out.println("Catch da exceção: " + e.getMessage());
+            System.out.println("ATENÇÃO: " + e.getMessage());
             valorAcrescimo = valorJuros/2;
         }
         double pagamentoMensal = pagamentoComJuros + valorAcrescimo;
         return pagamentoMensal;
     }
+
     public double calcularTotalPagamento(){
         return calcularPagamentoMensal() * this.prazoFinanciamento * 12;
     }
@@ -39,7 +41,7 @@ public class Casa extends Financiamento{
         System.out.printf("Valor do Imóvel CASA: " + valorImovel);
         System.out.printf("\nPrazo do Financiamento: " + prazoFinanciamento);
         System.out.printf("\nTaxa de Juros: " + taxaJurosAnual);
-        System.out.printf("\nTamanho da área construída: " + areaConstruida + " m²");
+        System.out.printf("\nTamanho da área construída: " + areaConstruida + "m²");
         System.out.printf("\nTamanho do terreno total: " + areaTerreno);
     }
 }
