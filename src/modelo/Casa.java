@@ -2,7 +2,9 @@ package modelo;
 
 import util.AumentoMaiorDoQueJurosException;
 
-public class Casa extends Financiamento{
+import java.io.Serializable;
+
+public class Casa extends Financiamento implements Serializable {
     private double areaConstruida;
     private double areaTerreno;
     public Casa(double valorImovel, int prazoFinanciamentoAnos, double taxaJurosAnual, double areaConstruida, double tamanhoTerreno){
@@ -43,5 +45,17 @@ public class Casa extends Financiamento{
         System.out.printf("\nTaxa de Juros: " + taxaJurosAnual);
         System.out.printf("\nTamanho da área construída: " + areaConstruida + "m²");
         System.out.printf("\nTamanho do terreno total: " + areaTerreno);
+    }
+
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(this.getValorImovel()).append("\n");
+        sb.append(this.calcularTotalPagamento()*12*this.prazoFinanciamento).append("\n");
+        sb.append(this.taxaJurosAnual).append("\n");
+        sb.append(this.prazoFinanciamento).append("\n");
+        sb.append(this.areaConstruida).append("\n");
+        sb.append(this.areaTerreno).append("\n");
+        sb.append(this.calcularTotalPagamento()).append("\n");
+        return sb.toString();
     }
 }

@@ -24,3 +24,5 @@ Versões atualizadas semanalmente.
 24/06/2025 - Adição de tratamento de erros com try e catch.
 
 26/06/2025 - Finalização da implementação do try/catch e do throws para controle de erros.
+
+04/07/2025 - Implementação de escrita e leitura para salvar em arquivo .txt e a serialização dos objetos da lista de financiamento.
