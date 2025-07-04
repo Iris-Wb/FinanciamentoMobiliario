@@ -10,12 +10,13 @@ import modelo.Terreno;
 import util.InterfaceUsuario;
 
 import javax.sql.rowset.serial.SerialJavaObject;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         InterfaceUsuario interfaceUsuario = new InterfaceUsuario();
         var listaDeFinanciamento = new ArrayList<Financiamento>();
 
@@ -76,6 +77,129 @@ public class Main {
         for (Financiamento financiamento : listaDeFinanciamento){
             financiamento.imprimirDadosFinanciamento();
             System.out.println("\n");
+        }
+
+
+        // escrita terreno
+
+
+        try(FileWriter escritor = new FileWriter("terreno.txt")) {
+            for (Financiamento financiamento : listaDeFinanciamento) {
+                if (financiamento instanceof Terreno) {
+                    escritor.write(financiamento.toString());
+                    break; // escreve apenas o primeiro terreno encontrado
+                }
+            }
+            escritor.flush();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo inexistente");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // leitura terreno
+        FileReader leitorArquivos = null;
+        try{
+           leitorArquivos = new FileReader("terreno.txt");
+           int caracterLido; // tabela asc, começa no 0
+           while ((caracterLido = leitorArquivos.read()) != -1){
+               System.out.println((char)caracterLido);
+           }
+           leitorArquivos.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("Arquivo inexistente");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        // escrita casa
+
+
+        try(FileWriter escritorCasa = new FileWriter("casa.txt")) {
+            for (Financiamento financiamento : listaDeFinanciamento) {
+                if (financiamento instanceof Casa) {
+                    escritorCasa.write(financiamento.toString());
+                    break;
+                }
+            }
+            escritorCasa.flush();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo casa inexistente");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // leitura casa
+        FileReader leitorArquivosCasa = null;
+        try{
+            leitorArquivosCasa = new FileReader("casa.txt");
+            int caracterLido; // tabela asc, começa no 0
+            while ((caracterLido = leitorArquivosCasa.read()) != -1){
+                System.out.println((char)caracterLido);
+            }
+            leitorArquivosCasa.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("Arquivo casa inexistente");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        // escrita apartamento
+
+
+        try(FileWriter escritorApart = new FileWriter("apartamento.txt")) {
+            for (Financiamento financiamento : listaDeFinanciamento) {
+                if (financiamento instanceof Apartamento) {
+                    escritorApart.write(financiamento.toString());
+                    break;
+                }
+            }
+            escritorApart.flush();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo apartamento inexistente");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // leitura
+        FileReader leitorArquivosApart = null;
+        try{
+            leitorArquivosApart = new FileReader("apartamento.txt");
+            int caracterLido; // tabela asc, começa no 0
+            while ((caracterLido = leitorArquivosApart.read()) != -1){
+                System.out.println((char)caracterLido);
+            }
+            leitorArquivosApart.close();
+        }catch (FileNotFoundException e) {
+            System.out.println("Arquivo Apartamento inexistente");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("financiamentos.ser"))) {
+            oos.writeObject(listaDeFinanciamento);
+            System.out.println("ArrayList serializado com sucesso.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("financiamentos.ser"))) {
+            ArrayList<Financiamento> listaLida = (ArrayList<Financiamento>) ois.readObject();
+            System.out.println("\n--- Financiamentos lidos do arquivo serializado ---");
+            for (Financiamento f : listaLida) {
+                f.imprimirDadosFinanciamento();
+                System.out.println();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
 
     }
